@@ -3,9 +3,9 @@ Text scrolling using method from 8-Bit Show And Tell
 
 ---
 
-A `.d64` disk image containing the necessary two software packages for the C64 (Turbo Mac Pro (the REU version) and Anthoy Crowther's 3-in-1-Editor), plus an example map, and a `PRG` for the PET: `TEXTSCROLL`.
+A `.d64` disk image containing the necessary two software packages for the C64 (Turbo Mac Pro (the REU version) and [Antony Crowther](https://en.wikipedia.org/wiki/Antony_Crowther)'s 3-in-1-Editor), plus an example map, and a `PRG` for the PET: `TEXTSCROLL`.
 
-Below is the source code from the video, and what happened when I followed the process laid out in the video - having never use a C64 previously (I was/am a Spectrum, PET and BBC fanboi).
+Below is all of the source code from the video, plus what happened when I followed the process laid out in the video - having never used a C64 previously (I was/am a Spectrum, PET and BBC fanboi).
 
 
 ## Video
@@ -21,7 +21,7 @@ Below is the source code from the video, and what happened when I followed the p
 ## Article
 
 From [Your Commodore Apr 1990](
-https://archive.org/details/YourCommodore80Jun91/YourCommodore/YourCommodore67-Apr90/page/n63/mode/2up)
+https://archive.org/details/YourCommodore80Jun91/YourCommodore/YourCommodore67-Apr90/page/n63/mode/2up), page 65:
 
 > ### 3 in 1
 > 
@@ -56,19 +56,19 @@ https://archive.org/details/YourCommodore80Jun91/YourCommodore/YourCommodore67-A
 > 
 > However, 3 IN 1 only uses program files (i.e. PRG), so only this type of file is listed to the screen. Also the size of the file is not given as it is not really that important.
 > 
-> Just in cose you ever have any disk errors, I hove included Option 5 which will read rhe error channel of the disk drive and report any errors. 
+> Just in case you ever have any disk errors, I hove included Option 5 which will read the error channel of the disk drive and report any errors. 
 > 
-> Option 6 is extremely important. This function allows you to moke more copies of the progam. If you use ihis function then you will be prompted for the filename that you wish to call the program by. The default output device when you load this program is disk. If you are using tape then you will need to change the output device. This is done by pressing F1. You will be able to tell which is currently being used for output as both this optfon and Option 7 will hove either a '1' or an '8' after them. A '1' specifies an output device of 1, i.e. cassette while an '8' means device 8 which is disk.
+> Option 6 is extremely important. This function allows you to make more copies of the program. If you use this function then you will be prompted for the filename that you wish to call the program by. The default output device when you load this program is disk. If you are using tape then you will need to change the output device. This is done by pressing F1. You will be able to tell which is currently being used for output as both this option and Option 7 will hove either a '1' or an '8' after them. A '1' specifies an output device of 1, i.e. cassette while an '8' means device 8 which is disk.
 > 
 > The final command available from the main menu is LOAD. This will LOAD the specified file into the same area of memory that it was saved from. This means that you can load any of the files created with the editor programs from the main menu.
 > 
 > 
 > #### Using the editors
 > 
-> Before I take a close look at the individual editor programsit is worth pointing out a few convention.
->   Firstly all numerical inputs and outputs are in HEX. This is become most programmers work in hexadecimal since it is alot easier when writing machine code than using decimal. Since this program was designed as a programmers tool it is obvfous that it should use HEX. All inputs must be made up to two or four figits e.g. '00' or '0003'.
+> Before I take a close look at the individual editor programs, it is worth pointing out a few conventions.
+>   Firstly all numerical inputs and outputs are in HEX. This is become most programmers work in hexadecimal since it is a lot easier when writing machine code than using decimal. Since this program was designed as a programmers tool it is obvious that it should use HEX. All inputs must be made up to two or four digits e.g. '00' or '0003'.
 > 
-> Many of the functions can be confrolled by either the cursor keys or a joystick in port two. Since the joystick only has one fire button and it may need to either erase or set points, the 'F1' key is used to select its operation. Doth editors indicate whether the joystick is in DRAW mode or erase (DEL) mode. Take a look at the labelled pictures of both editors to see where the flags are.
+> Many of the functions can be controlled by either the cursor keys or a joystick in port two. Since the joystick only has one fire button and it may need to either erase or set points, the 'F1' key is used to select its operation. Doth editors indicate whether the joystick is in DRAW mode or erase (DEL) mode. Take a look at the labelled pictures of both editors to see where the flags are.
 >  As with the main menu the device for output can be either an 8 or 1. This can be changed from the pull down menu (F7).
 >  Again look at the pictures in order to see where the flags can be found.
 > 
@@ -89,7 +89,7 @@ https://archive.org/details/YourCommodore80Jun91/YourCommodore/YourCommodore67-A
 > 
 > Animation is quire difficult to explain and is best figured out with practice, However I will do my best to explain how to set up and use this special animation function.
 > 
-> When you enter a number greater than 00 for the number of animations after choosing NUMBER the sprites at the bottom of the screen will change. If, for example, we have enterd 01 and the current sprite was $A0, sprite 0 would be the same as the actual sprite $AO. Sprite 01 will will be the same as $A1, Sprite 02 will be the same as $A2 etc. If we now press the keys W and Q we can increment and decrement the sprite numbers at the bottom of the screen giving the appearance of animation. If we press 'W', Sprite 00 will become actual sprite $A1, Sprite 01 will become actual sprite $A2 etc. If we had entered 04 after a CONTROL N instruction then the sprites would be incremented by four every time you pressed the 'W' key, i.e., sprite 00 would become $A4, Sprite 01 would become $A5 etc.
+> When you enter a number greater than 00 for the number of animations after choosing NUMBER the sprites at the bottom of the screen will change. If, for example, we have entered 01 and the current sprite was $A0, sprite 0 would be the same as the actual sprite $AO. Sprite 01 will will be the same as $A1, Sprite 02 will be the same as $A2 etc. If we now press the keys W and Q we can increment and decrement the sprite numbers at the bottom of the screen giving the appearance of animation. If we press 'W', Sprite 00 will become actual sprite $A1, Sprite 01 will become actual sprite $A2 etc. If we had entered 04 after a CONTROL N instruction then the sprites would be incremented by four every time you pressed the 'W' key, i.e., sprite 00 would become $A4, Sprite 01 would become $A5 etc.
 > 
 > I did say that this form of animation was complicated but if you try it then I'm sure that it will fall into place.
 > 
@@ -124,25 +124,25 @@ https://archive.org/details/YourCommodore80Jun91/YourCommodore/YourCommodore67-A
 > 
 > Once you have entered a character you can place it anywhere within a defined background in the background editor. The 'J' key is used to move control between either the character editor or the background editor. You can see which mode you are in by seeing which cursor is flashing.
 > 
-> The background size is defined with the WINDOW SIZE option and the window con be anything from two by two character upwards, the maximum in either direction being $FFFF. Obviously your screen size is limited by the amount of memory available. If there is not enough room for your window then you will have to enter new values. I have made up to 32K of memory available for the window though I'm sure that you will find that you very rarely use this much. The two numbers in the middle of the screen, after the word DATA, show you where your window starts ond finishes in memory.
+> The background size is defined with the WINDOW SIZE option and the window con be anything from two by two character upwards, the maximum in either direction being $FFFF. Obviously your screen size is limited by the amount of memory available. If there is not enough room for your window then you will have to enter new values. I have made up to 32K of memory available for the window though I'm sure that you will find that you very rarely use this much. The two numbers in the middle of the screen, after the word DATA, show you where your window starts and finishes in memory.
 > 
 > One very important consideration for games programmers is where they are actually going to put their screen. The BASE ADDRESS option will prompt you for the base address of the background so that you can move it where you want. Do make sure that you don't overwrite any other programs in memory, such as the editor.
 > 
-> You may think that it is a little limiting to just see a small section of your total graphics screen ot one time. 1 have therefore included the 'W' command which will switch to a fuli screen display in which you can move around the background, movement being controlled by the cursor keys only.
+> You may think that it is a little limiting to just see a small section of your total graphics screen at one time. 1 have therefore included the 'W' command which will switch to a full screen display in which you can move around the background, movement being controlled by the cursor keys only.
 > 
 > It is possible to set up o border character which is displayed around the smaller editing window. I usually leave this blank though you may try different effects by putting fancy borders around the screen. This does not apply to full screen mode.
 > 
 > 
 > #### Painting a large area
 > 
-> When producing backgrounds if is quite usual for large areas of the background to be repeated elsewhere in the backdrop. A GRAB option is available that will allow you to grab a rectangular area of the backdrop and copy it to another position of the screen.
+> When producing backgrounds it is quite usual for large areas of the background to be repeated elsewhere in the backdrop. A GRAB option is available that will allow you to grab a rectangular area of the backdrop and copy it to another position of the screen.
 > 
-> To use this mode you should be in rhe background editing section of the character editor. Move the cursor to where the top left of the block to be copied is and press the left arrow key (top right of the keyboard). Use the cursor keys to move the bottom right of the area to be copied, and the rectangular area marked will be highlighted. Once the highlight covers the total area that you want to copy press the RETURN key. Now when you move around the background you will drag with you a copy of the block marked. You can place this anywhere on the backdrop by pressing '*'. RUN/STOP is used to exit this mode.
+> To use this mode you should be in the background editing section of the character editor. Move the cursor to where the top left of the block to be copied is and press the left arrow key (top right of the keyboard). Use the cursor keys to move the bottom right of the area to be copied, and the rectangular area marked will be highlighted. Once the highlight covers the total area that you want to copy press the RETURN key. Now when you move around the background you will drag with you a copy of the block marked. You can place this anywhere on the backdrop by pressing '*'. RUN/STOP is used to exit this mode.
 > 
 > 
 > #### Saving and Loading
 > 
-> As I said earlier, it is possible to load any type of file into memory from the main menu. It is also possible to laod any type of file from within any of the other editors as well. However the I/O device is separate in each editor so you must change it in each section of the program. 
+> As I said earlier, it is possible to load any type of file into memory from the main menu. It is also possible to load any type of file from within any of the other editors as well. However the I/O device is separate in each editor so you must change it in each section of the program. 
 > 
 > Even though you can LOAD in any type of data from within any section of the program, you can only save each type of data from the correct editor. You must therefore be in the character editor in order to SAVE your user defined graphics. You must be in the background editor in order to save backgrounds.
 > 
@@ -169,7 +169,7 @@ https://archive.org/details/YourCommodore80Jun91/YourCommodore/YourCommodore67-A
 > #### CHARACTER/SCREEN EDITOR
 > 
 > ```none
-> Cursor/Jaystick            Move cursor
+> Cursor/Joystick            Move cursor
 > */Fire (draw)              Draw point
 > Space/Fire (del)           Delete point
 > F1                         Joystick fire function
@@ -219,7 +219,7 @@ https://archive.org/details/YourCommodore80Jun91/YourCommodore/YourCommodore67-A
 > COPY-CHAR                  Copy characters into sprite.
 >                            Use cursors to move, RETURN 
 >                            to place and RUN/STOP to exit. 
-> WRAP-SET                   LRUD wtap around ON/OFF
+> WRAP-SET                   LRUD wrap around ON/OFF
 > ANIMATE                    Use F to speed up, S to slow down
 > ```
 
@@ -1112,9 +1112,9 @@ Note: If you mess up, or make any changes, you can ***not*** overwrite the exist
 
 ### Trying to use TMP
 
-TMP is unbelievably difficult to `LOAD` – a PhD. is required. You end up having to extact TMP from the original disk and make your own disk, just for simplicity's sake.
+TMP is unbelievably difficult to `LOAD` – a PhD. is required. You end up having to extract TMP from the original disk and make your own disk, just for simplicity's sake.
 
-A very noisy catalog listing is produced by `LOAD"$",8` and `LIST`, full of confusing (and needless) comments (and URLs). Note to developers: Trying to cram information into *every* available bit of space just leads to a very "noisy" UI/UX. I get what they are trying to do - make the floppy self-contained - but it's a bit of a shock to the system to see so much info, bunched together, in a terrible font. As became clear later on, the floppy *does* contin quite a feew variants, hence the "busy-ness" of the listing.
+A very noisy catalog listing is produced by `LOAD"$",8` and `LIST`, full of confusing (and needless) comments (and URLs). Note to developers: Trying to cram information into *every* available bit of space just leads to a very "noisy" UI/UX. I get what they are trying to do - make the floppy self-contained - but it's a bit of a shock to the system to see so much info, bunched together, in a terrible font. As became clear later on, the floppy *does* contain quite a few variants, hence the apparent "busy-ness" of the listing.
 
 Also, on the C64, what the hell happened to `DLOAD` that was present on the PET, but seemingly dropped on the C64. How sad is that? Commodore don't like to make things easy, do they? Swine! Oh yeah, as the C64 is a home machine, Commodore made home users use awful commands, as they weren't good enough to use the "business" commands of the PET – great design decisions all round. Even `DIRECTORY` and `CATALOG` are missing – you have to use the positively prehistoric `LOAD "$",8` and then `LIST`.
 
@@ -1123,7 +1123,7 @@ Watch [Turbo Macro Pro v1.2 - Getting up and running with an easy to use and pow
 The two disk images:
 
    - `Turbo_Macro_Pro_Sep06-128_IDE64.d64` only has four files
-   - `Turbo_Macro_Pro_Sep06-128_IDE64.d64` has many files (and crappy comments) and is the disk to use (apparently). You want `TMP v1.2/S.` and `TMPPREFS v1.2/S.` (what is with these unweldy filenames? )
+   - `Turbo_Macro_Pro_Sep06-128_IDE64.d64` has many files (and crappy comments) and is the disk to use (apparently). You want `TMP v1.2/S.` and `TMPPREFS v1.2/S.` (what is with these unwieldy filenames? )
 
 Using `LOAD "$",8` and then `LIST` results in a listing:
 
@@ -1161,7 +1161,7 @@ See also [Turbo Macro Pro Editor Commands](https://slark.me/c64-downloads/turbo-
 
 When I first tried to use the newly saved copy of TMP, I didn't first detach the disk, and loading tmp (`LOAD"TMP",8`) and calling `SYS 32768` didn't work, it did nothing. Let's try again...
 
-To delete a file (i.e. the exisitng copy of TMP), see [Deleting and overwriting files on disk...howto? ](https://www.lemon64.com/forum/viewtopic.php?t=8505), there is obviously no scratch command, in C64 BASIC, so
+To delete a file (i.e. the existing copy of TMP), see [Deleting and overwriting files on disk...howto? ](https://www.lemon64.com/forum/viewtopic.php?t=8505), there is obviously no scratch command, in C64 BASIC, so
 
 > *Delete a file:
 > 
@@ -1185,13 +1185,13 @@ LOAD"TMP",8,1
 
 Then `SYS 32768` to run it.
 
-Now, if you are using an emulator, you can just paste in the assembly code, which is also soul destroying. Actually things start of get (slightly) better from hereonin. Still soul destroying, just less so.
+Now, if you are using an emulator, you can just paste in the assembly code, which is also soul destroying. Actually things start of get (slightly) better from here on in. Still soul destroying, just less so.
 
 (command)+shift R - for extra RAM (REU), that the VICE emulator does not have turned on, by default. 
 
-Trying to add it with F10 > Machine settings > Memory Expansion Hack settings > Memory Expansion Hack Device > C64 256k. However, it doesn't *seem* to work. Do you need to specify a RAMdisk filename? Just make up a name. But it still didn't work. I gave up (again!).
+Trying to add it with F10 > Machine settings > Memory Expansion Hack settings > Memory Expansion Hack Device > C64 256k. However, it doesn't *seem* to work. Do you need to specify a RAM disk filename? Just make up a name. But it still didn't work. I gave up (again!).
 
-Trying F10 > Machine settings > Cartridge > RAM Expansion Module > Enable (and save image, specify `remdisk`. I found that (command)+shift R still doesn't work.
+Trying F10 > Machine settings > Cartridge > RAM Expansion Module > Enable (and save image, specify `remdisk` as a "random" name). I found that (command)+shift R still doesn't work.
 
 It turns out that on the original TMP disk there is a `TMP+REU` program. Load `TMP+REU *` in to `TMPPREFS` and save that as `TMP`. Now use that.
 
@@ -1290,8 +1290,8 @@ I stand by my statement that I made in the [README](https://github.com/greenonli
 
 However, TMP is a useful tool, although it *does* have a steep learning curve, and it is ridiculously fiddly to get started with (just to get the program to run).
 
-3-in-1 is also a great tool, but with extruciatingly painful keypresses. Which is made worse by the, seemingly, rather unresponsive <kbd>*</kbd> key – multiple hard long presses are required. To be fair, this is probably due to the emulator, maybe?
+3-in-1 is also a great tool, but with excruciatingly painful keypresses. Which is made worse by the, seemingly, rather unresponsive <kbd>*</kbd> key – multiple hard long presses are required. To be fair, this is probably due to the emulator, maybe?
 
-C64 BASIC is just dire, especially the (non-existant) disk handling tools.
+C64 BASIC is just dire, especially the (non-existent) disk handling tools.
 
 Hopefully, I shall never have to use any of the three ever again! Seriously.

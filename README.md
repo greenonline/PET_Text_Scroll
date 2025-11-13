@@ -3,9 +3,9 @@ Text scrolling using method from 8-Bit Show And Tell
 
 ---
 
-A `.d64` disk image containing the necessary two software packages for the C64, plus an example map, and a `PRG` for the PET.
+A `.d64` disk image containing the necessary two software packages for the C64 (Turbo Mac Pro (the REU version) and Anthoy Crowther's 3-in-1-Editor), plus an example map, and a `PRG` for the PET: `TEXTSCROLL`.
 
-Below is the source code from the video, and what happened when I followed the process laid out in the video.
+Below is the source code from the video, and what happened when I followed the process laid out in the video - having never use a C64 previously (I was/am a Spectrum, PET and BBC fanboi).
 
 
 ## Video
@@ -1140,13 +1140,20 @@ LOAD "TMPPREFS V1.2/S.",8
 ```
 and hit enter. Then enter `RUN`.
 
-This is the most soul destroying application to use, ever. "Back arrow plus 'L'" to load, this is very confusing to the non-native C64 user!!! The cursor just moves around. From Reddit, [weird question but....](https://www.reddit.com/r/c64/comments/qe3uvk/weird_question_but/): "Back arrow" is actually a character – Use Shift and the key to the left of the "1" key (§/±) on the Mac. Load "tmp *", will load the TMP. Enter "y" (Yes), to "overwrite prefs from loaded? (y/n)"
+This is the most soul destroying application to use, ever. "Back arrow plus 'L'" to load, this is very confusing to the non-native C64 user!!! The cursor just moves around, instead. From Reddit, [weird question but....](https://www.reddit.com/r/c64/comments/qe3uvk/weird_question_but/): "Back arrow" is actually a character – Use Shift and the key to the left of the "1" key (§/±) on the Mac. Then press <kbd>L</kbd>. 
 
+Or, in other nomenclature, `(control) + L`. Entering "tmp *" at the "load" prompt, will load the TMP from disk. 
+
+Enter "y" (Yes), to "overwrite prefs from loaded? (y/n)"
+
+Other commands: 
 
  - Back arrow + C - change colour, enter "0" for border, then ctrl-5 for purple (who TF invented these keystrokes?).
  - Insert/Create new blank disk (Top tip: Use a copy of the Crowther v2.3 disk)
  - Back arrow + * for disk listing
  - Back arrow + s and save the new TMP as "tmp"
+
+See also [Turbo Macro Pro Editor Commands](https://slark.me/c64-downloads/turbo-macro-pro-editor-commands.pdf)
 
 When I first tried it, I didn't detach the disk, and loading tmp (`LOAD"TMP",8`) and calling `SYS 32768` didn't work, it did nothing. Let's try again...
 
@@ -1164,7 +1171,7 @@ Apparently, every disk command is buggy, even `@`, so it is easier to just make 
 
 After creating a new disk, re-saving "tmp", and detaching the disk, the same thing happened. So soul destroying.
 
-Note: Do ***not*** try to overwrite using @, from within TMP, as it does not work and you will end up with a file named `@TMP` that is impossible to delete, using the standard commands (i.e. `SCRATCH` on the PET). Use [DiskMaster](https://csdb.dk/release/?id=10642) instead.
+Note: Do ***not*** try to overwrite using @, from within TMP, as it does not work and you will end up with a file named `@TMP` that is impossible to delete, using the standard commands (i.e. `SCRATCH` on the PET). Use [DiskMaster](https://csdb.dk/release/?id=10642) instead. This seems like a bug.
 
 Turns out you have to use the `,1` suffix, to load the machine code into the correct location, as in
 
@@ -1244,6 +1251,31 @@ See [List of commands](https://slark.me/c64-downloads/turbo-macro-pro-editor-com
  - (command) + c - cold start (clear memory)
             
 
+## Further Enhancements
+
+Taken from the comments under the video:
+
+ - Auto generate the map, using a text string
+   - I was disappointed you didn't write a routine to enter a string and then look it up in the PET character ROM in order to produce the character map, or avoid having to create a map at all if speed wasn't an issue.
+     - It'd be possible, of course, but giant 8-character-wide letters are a lot less readable because only 5 full characters would fit on the 40-column screen. At any moment you could only see things like "MARRI" or "5.29.", or 4 characters and fractions of the two surrounding it.
+     - In order to fit more characters, instead of reading from ROM you could in principle define your own font, e.g. 4x6 or 6x6 pixels as long as it is fixed width. I've made a few C64 intros with that kind of font, using the chunky 4x4 subpixels and of course the smooth scrolling, while you have to use full width characters and simulate scrolling with graphics symbols.
+        Now that I think of it, the custom font could be combined with another table that defines the width of each character, enabling proportional banner fonts in order to fit even more characters. Probably that is beyond the scope of this example but if you're planning to make a living on producing scrolling banner texts, it could be a worthwhile addition for V2.
+   - Why not read the character rom and use a message string to generate the map?
+     - It's certainly possible but it would be a) less flexible (it'll scroll any "bitmap" currently, not just pre-defined characters)   b) less readable since only 5 (or part of 6) characters could be seen on screen at a time (40 columns / 8 = 5)  c) would limit the message to ~22 characters because of other current constraints (256 / 8 = 32 characters, with 5 blank on each end)  d) more code :) 
+ - Change the C64 character set to that of the PET
+   - Couldn't you have moved the character ROM into RAM and fixed the pixel issue though with a small custom utility though?
+   - Could you redefine the character set to get a single pixel width for the C64 ?
+     - Yes, definitely possible. In fact, it now occurs to me that I probably could have done that in the "3 into 1" editor near the beginning of the episode and possibly explained it that way too! 
+   - To fix the 1 pixel chars, you can load the PET-Charset as a User-Charset on the C64)
+   - Or just copy the set from $D000-$D7FF to let's say $3800 and then correct the characters with some AND work. 
+Like C=+N ($3B28-$3B2F) needs AND #1, C=+G ($3B50-$3B57) needs AND #128 etc
+   - ... playing with the vertical set of these characters.
+I originally thought I saw a small optimization where the convert table could be placed in zero page since it was so sparce, but then I checked my cycle count table and found that surprisingly LDA n,X and LDA nn,X both take 4 cycles (nn just takes 1 more byte). Though LDA nn,X will add a cycle if nn+X crosses a page boundary. So perhaps aligning convert to a page boundary could still save a few hundred cycles in that loop if convert isn't already close to one.
+ - Cleaner source code
+   - In TMP you can also use: `.byte "1","0","3","7"`, instead of: `.byte $31,$30,$33,$37`
+   - Note: P.S. A few pseudo-ops do not work in TMP but only in it's cross-assembly version: TMPx. See: http://turbo.style64.org/docs/portability-considerations-re-syntax. The most handy one that's not supported by TMP is .binary to include binary data from an external file, like bitmap data, character set, etc. So I hate to admit it: but a cross assembler does have added value. Grrrr.
+ - Other
+   -  I was thinking it might be interesting to have a routine scroll the inverse single-vertical-pixel characters between the blocks of the letters, and also perhaps create a horizontal striping effect by, after waiting for raster, using delay loops to count scan lines and selectively blanking or unblanking the display at various times.  Alternatively, if you're only using the middle portion of the screen and don't need to display any "normal" text, I think you could set the CRTC to show four lines per character instead of 8, double the programmed value for total lines per frame, and adjust the number of lines before vsync to yield a roughly-centered display; doing this would double the vertical resolution.
 
 
 ## Conclusion

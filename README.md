@@ -3,7 +3,9 @@ Text scrolling using method from 8-Bit Show And Tell
 
 ---
 
+A `.d64` disk image containing the necessary two software packages for the C64, plus an example map, and a `PRG` for the PET.
 
+Below is the source code from the video, and what happened when I followed the process laid out in the video.
 
 
 ## Video
@@ -1211,6 +1213,8 @@ So we now have two cartridges attached: The Super Snapshot and the ERU.
 When (if?) you finally get Super Snapshot working, and having just loaded the map at 0600  and reassembled the PET version....
 
 F7 > Cartridge > Cartridge freeze
+
+Press <kbd>M</kbd> to enter the monitor.
 
 Examine the bytes
 

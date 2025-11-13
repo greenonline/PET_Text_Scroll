@@ -1164,7 +1164,7 @@ Apparently, every disk command is buggy, even `@`, so it is easier to just make 
 
 After creating a new disk, re-saving "tmp", and detaching the disk, the same thing happened. So soul destroying.
 
-Note: Do ***not*** try to overwrite using @, from within TMP, as you will end up with a file named `@TMP` that is impossible to delete.
+Note: Do ***not*** try to overwrite using @, from within TMP, as it does not work and you will end up with a file named `@TMP` that is impossible to delete, using the standard commands (i.e. `SCRATCH` on the PET). Use [DiskMaster](https://csdb.dk/release/?id=10642) instead.
 
 Turns out you have to use the `,1` suffix, to load the machine code into the correct location, as in
 

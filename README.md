@@ -323,6 +323,8 @@ PET
 
 Note that there are two sets of `ahead1` and `ahead2`, which is odd and confusing. However, it doesn't *seem* to affect the code.
 
+Note that the following assembly code has problematic indentation, that is fixed, further below
+
 ```none
 ;defines
 pet         = 0
@@ -619,7 +621,7 @@ convert  ;transform table
 .byte 0,0,0,0,0,0,0,0
 ```
 
-Complete pastable source, with excess (problematic for TMP) spaces removed:
+Complete pastable source, with excess (problematic for TMP) spaces removed - although it has inconsistent indentation. This is fixed further below:
 
 ```none
 ;defines
@@ -841,7 +843,7 @@ convert  ;transform table
 
 ### Use this!!!
 
-Tided pastable source, w/ some shortened labels, with excess (problematic for TMP) spaces removed:
+Tided, and tabulated, pastable source, w/ some shortened labels, with excess (problematic for TMP) spaces removed:
 
 ```none
 ;defines
@@ -1112,7 +1114,7 @@ Note: If you mess up, or make any changes, you can ***not*** overwrite the exist
 
 TMP is unbelievably difficult to `LOAD` – a PhD. is required. You end up having to extact TMP from the original disk and make your own disk, just for simplicity's sake.
 
-A very noisy catalog listing is produced by `LOAD"$",8` and `LIST`, full of confusing (and needless) comments. Note to developers: Trying to cram information into *every* available bit of space just leads to a very "noisy" UI/UX.
+A very noisy catalog listing is produced by `LOAD"$",8` and `LIST`, full of confusing (and needless) comments (and URLs). Note to developers: Trying to cram information into *every* available bit of space just leads to a very "noisy" UI/UX. I get what they are trying to do - make the floppy self-contained - but it's a bit of a shock to the system to see so much info, bunched together, in a terrible font. As became clear later on, the floppy *does* contin quite a feew variants, hence the "busy-ness" of the listing.
 
 Also, on the C64, what the hell happened to `DLOAD` that was present on the PET, but seemingly dropped on the C64. How sad is that? Commodore don't like to make things easy, do they? Swine! Oh yeah, as the C64 is a home machine, Commodore made home users use awful commands, as they weren't good enough to use the "business" commands of the PET – great design decisions all round. Even `DIRECTORY` and `CATALOG` are missing – you have to use the positively prehistoric `LOAD "$",8` and then `LIST`.
 
@@ -1140,7 +1142,9 @@ LOAD "TMPPREFS V1.2/S.",8
 ```
 and hit enter. Then enter `RUN`.
 
-This is the most soul destroying application to use, ever. "Back arrow plus 'L'" to load, this is very confusing to the non-native C64 user!!! The cursor just moves around, instead. From Reddit, [weird question but....](https://www.reddit.com/r/c64/comments/qe3uvk/weird_question_but/): "Back arrow" is actually a character – Use Shift and the key to the left of the "1" key (§/±) on the Mac. Then press <kbd>L</kbd>. 
+It was at around this point, that I started to lose the will to live. This is the most soul destroying application to use, ever. Or maybe I was in a very bad mood. Whatever...
+
+Once TMPPREFS is loaded, then "Use back arrow plus 'L'" to load" – this is a very confusing statement, for a non-native C64 user!!! Taking the "back Arrow" to mean the left cursor key, the cursor just moves around, instead, as one would expect. However, from Reddit, [weird question but....](https://www.reddit.com/r/c64/comments/qe3uvk/weird_question_but/): "Back arrow" is actually a character – Use Shift and the key to the left of the "1" key (<kbd>§</kbd>/<kbd>±</kbd>) on the Mac. Then press <kbd>L</kbd>. 
 
 Or, in other nomenclature, `(control) + L`. Entering "tmp *" at the "load" prompt, will load the TMP from disk. 
 
@@ -1155,9 +1159,9 @@ Other commands:
 
 See also [Turbo Macro Pro Editor Commands](https://slark.me/c64-downloads/turbo-macro-pro-editor-commands.pdf)
 
-When I first tried it, I didn't detach the disk, and loading tmp (`LOAD"TMP",8`) and calling `SYS 32768` didn't work, it did nothing. Let's try again...
+When I first tried to use the newly saved copy of TMP, I didn't first detach the disk, and loading tmp (`LOAD"TMP",8`) and calling `SYS 32768` didn't work, it did nothing. Let's try again...
 
-To delete a file, see [Deleting and overwriting files on disk...howto? ](https://www.lemon64.com/forum/viewtopic.php?t=8505), there is obviously no scratch command, so
+To delete a file (i.e. the exisitng copy of TMP), see [Deleting and overwriting files on disk...howto? ](https://www.lemon64.com/forum/viewtopic.php?t=8505), there is obviously no scratch command, in C64 BASIC, so
 
 > *Delete a file:
 > 
@@ -1251,7 +1255,7 @@ See [List of commands](https://slark.me/c64-downloads/turbo-macro-pro-editor-com
  - (command) + c - cold start (clear memory)
             
 
-## Further Enhancements
+## Further Possible Enhancements
 
 Taken from the comments under the video:
 
@@ -1286,7 +1290,7 @@ I stand by my statement that I made in the [README](https://github.com/greenonli
 
 However, TMP is a useful tool, although it *does* have a steep learning curve, and it is ridiculously fiddly to get started with (just to get the program to run).
 
-3-in-1 is also a great tool, but with extruciatingly painful keypresses. Which is made worse by the, seemingly, rather unresponsive <kbd>*</kbd> key _ multiple hard long presses are required.
+3-in-1 is also a great tool, but with extruciatingly painful keypresses. Which is made worse by the, seemingly, rather unresponsive <kbd>*</kbd> key – multiple hard long presses are required. To be fair, this is probably due to the emulator, maybe?
 
 C64 BASIC is just dire, especially the (non-existant) disk handling tools.
 
